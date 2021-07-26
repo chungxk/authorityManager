@@ -1,0 +1,23 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/xxx?
+    username: root
+    password: admin
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  redis:
+    port: 6379
+    host: localhost
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: chung.manager.entities
+
+server:
+  port: 80
