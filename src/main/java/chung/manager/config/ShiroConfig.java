@@ -11,15 +11,16 @@ import org.springframework.context.annotation.Configuration;
 public class ShiroConfig {
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(){
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager defaultWebSecurityManager){
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-
+        shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
         return shiroFilterFactoryBean;
     }
 
     @Bean
-    public DefaultWebSecurityManager defaultWebSecurityManager(){
+    public DefaultWebSecurityManager defaultWebSecurityManager(Realm realm){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
+        defaultWebSecurityManager.setRealm(realm);
         return defaultWebSecurityManager;
     }
 
