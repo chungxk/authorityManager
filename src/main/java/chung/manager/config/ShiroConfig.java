@@ -7,12 +7,24 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Configuration
 public class ShiroConfig {
 
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager defaultWebSecurityManager){
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+        Map<String,String> urlMap = new HashMap<>();
+        urlMap.put("/css/**", "anon");
+        urlMap.put("/fonts/**", "anon");
+        urlMap.put("/images/**", "anon");
+        urlMap.put("/js/**", "anon");
+
+        shiroFilterFactoryBean.setLoginUrl("/login.html");
+
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(urlMap);
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
         return shiroFilterFactoryBean;
     }
