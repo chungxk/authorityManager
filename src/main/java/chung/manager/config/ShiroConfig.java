@@ -1,6 +1,7 @@
 package chung.manager.config;
 
 import chung.manager.shiro.CustomRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -22,7 +23,7 @@ public class ShiroConfig {
         urlMap.put("/images/**", "anon");
         urlMap.put("/js/**", "anon");
 
-        shiroFilterFactoryBean.setLoginUrl("/login.html");
+        shiroFilterFactoryBean.setLoginUrl("/");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(urlMap);
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
@@ -39,6 +40,10 @@ public class ShiroConfig {
     @Bean
     public Realm realm(){
         CustomRealm realm = new CustomRealm();
+        /*HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        credentialsMatcher.setHashAlgorithmName("MD5");
+        credentialsMatcher.setHashIterations(1024);
+        realm.setCredentialsMatcher(credentialsMatcher);*/
         return realm;
     }
 }

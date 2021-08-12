@@ -1,5 +1,8 @@
 
 spring:
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/employee_manager
@@ -23,3 +26,9 @@ mybatis-plus:
 
 server:
   port: 80
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, beans
+
